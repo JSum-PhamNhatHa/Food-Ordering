@@ -7,7 +7,7 @@ from sqlalchemy.orm import Session
 from . import models
 from .database import engine, get_db
 
-models.Base.metadata.create_all(bind=engine)
+# models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 
@@ -22,18 +22,18 @@ app = FastAPI()
 #         print("Connecting to database failed, error: ", err)
 #         time.sleep(2)
 
-@app.get("/")
-def get_users(db:Session = Depends(get_db)):
-    users = db.query(models.Temp).all()
-    return {"data": users}
+# @app.get("/")
+# def get_users(db:Session = Depends(get_db)):
+#     users = db.query(models.Temp).all()
+#     return {"data": users}
 
-@app.post("/sql")
-def get_test(post: models.Temp, db:Session = Depends(get_db)):
-    new_post = models.Temp(title=post.title, content=post.content, pulished=post.published)
-    db.add(new_post)
-    db.commit()
-    db.refresh(new_post)
-    return {"status": "success"}
+# @app.post("/sql")
+# def get_test(post: models.Temp, db:Session = Depends(get_db)):
+#     new_post = models.Temp(title=post.title, content=post.content, pulished=post.published)
+#     db.add(new_post)
+#     db.commit()
+#     db.refresh(n)
+#     return {"status": "success"}
 
 # @app.post("/create-user", status_code=status.HTTP_201_CREATED)
 # def create_users(user: User, db:Session = Depends(get_db)):
