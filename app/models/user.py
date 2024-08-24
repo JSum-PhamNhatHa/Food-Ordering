@@ -1,7 +1,7 @@
 import uuid
 from sqlalchemy import TIMESTAMP, UUID, Column, String
 from sqlalchemy.sql import func
-from app.database import Base
+from .database import Base
     
 class User(Base):
     __tablename__ = "users"
@@ -10,6 +10,6 @@ class User(Base):
     create_at = Column(TIMESTAMP, server_default=func.now())
     update_at = Column(TIMESTAMP, server_default=func.now())
     username = Column(String, nullable=False)
-    email = Column(String, nullable=False)
+    email = Column(String, nullable=False, unique=True)
     password = Column(String, nullable=False)
     role = Column(String, nullable=False)
