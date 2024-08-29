@@ -1,5 +1,6 @@
 from fastapi import Depends, HTTPException, status, APIRouter, Query
 from sqlalchemy.orm import Session
+from sqlalchemy.sql import func
 from typing import List
 from ..models.database import get_db
 from app.models.tables import User
@@ -38,7 +39,7 @@ def get_users(db: Session = Depends(get_db),
 
 @router.get("/{id}", response_model=Users)
 def get_user_by_own_id(db: Session= Depends(get_db),
-                   userData: TokenData = Depends(auth.get_current_user)):
+                       userData: TokenData = Depends(auth.get_current_user)):
     user = db.query(User).filter(User.id == userData.id).first()
     if not user:
         raise HTTPException(
@@ -61,10 +62,7 @@ def create_user(user: UserCreate, db: Session = Depends(get_db)):
 @router.patch("/{id}", status_code=status.HTTP_202_ACCEPTED)
 def update_user(user: UserUpdate, db: Session = Depends(get_db),
                 userData: TokenData = Depends(auth.get_current_user)):
-    if user.password is None:
-        user.password = userData.password
-    if not user.username is None:
-        user.username = userData.username
+        
     db_user = db.query(User).filter(User.id == userData.id).first()
     
     if not db_user:
@@ -73,10 +71,14 @@ def update_user(user: UserUpdate, db: Session = Depends(get_db),
     if str(db_user.id) != userData.id:
         raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Not authorized to update this user")
 
-    password_hashed = helper.hash(user.password)
-    user.password = password_hashed
+    if user.password:
+        user.password = helper.hash(user.password)
+        user.password = password_hashed
+        
     for key, value in user.dict(exclude_unset=True).items():
         setattr(db_user, key, value)
+    
+    db_user.updated_at = func.now()
     
     db.commit()
     db.refresh(db_user)
@@ -99,7 +101,8 @@ def delete_user(id: str,
     if not db_user:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="User not found")
     
-    db.delete(db_user)
+    db_user.status = False
+    db_user.updated_at = func.now()
     db.commit()
     
     return {"detail": "User deleted"}

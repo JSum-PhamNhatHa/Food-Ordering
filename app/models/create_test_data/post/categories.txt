@@ -1,0 +1,32 @@
+[
+  {
+    "title": "Món canh",
+    "description": "Các món canh ăn kèm với cơm.",
+    "status": true,
+    "user_id": "f89d25cc-289a-419e-9003-6cf7f7c3e362"
+  },
+  {
+    "title": "Món salad",
+    "description": "Salad tươi ngon, đầy đủ dinh dưỡng.",
+    "status": true,
+    "user_id": "f89d25cc-289a-419e-9003-6cf7f7c3e362"
+  },
+  {
+    "title": "Món nướng",
+    "description": "Các món nướng thơm ngon, hấp dẫn.",
+    "status": true,
+    "user_id": "f89d25cc-289a-419e-9003-6cf7f7c3e362"
+  },
+  {
+    "title": "Món xào",
+    "description": "Các món xào nhanh gọn và ngon miệng.",
+    "status": true,
+    "user_id": "f89d25cc-289a-419e-9003-6cf7f7c3e362"
+  },
+  {
+    "title": "Món tráng miệng",
+    "description": "Các món tráng miệng ngọt ngào và hấp dẫn.",
+    "status": true,
+    "user_id": "f89d25cc-289a-419e-9003-6cf7f7c3e362"
+  }
+]

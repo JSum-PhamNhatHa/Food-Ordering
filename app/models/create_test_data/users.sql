@@ -1,0 +1,3 @@
+insert into public.users (id, username, email, password, role, status) values ('f89d25cc-289a-419e-9003-6cf7f7c3e362', 'admin', 'admin@gmail.com', '$2y$10$zLvOYvdBShoLxGdNZO2w3O0wgAnquIXZ3pEgPZXCPOsfiaYgKsLTa', 'admin', 'True');
+insert into public.users (id, username, email, password, role, status) values ('4b7b28c0-a70b-4c9b-9d54-f80e00441f18', 'customer', 'customer@gmail.com', '$2y$10$zLvOYvdBShoLxGdNZO2w3O0wgAnquIXZ3pEgPZXCPOsfiaYgKsLTa', 'cust', 'True');
+insert into public.users (id, username, email, password, role, status) values ('b42690ab-a361-419b-bda4-6c1db575f3a3', 'staff', 'staff@gmail.com', '$2y$10$zLvOYvdBShoLxGdNZO2w3O0wgAnquIXZ3pEgPZXCPOsfiaYgKsLTa', 'staff', 'True');
