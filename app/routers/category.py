@@ -6,7 +6,7 @@ from app.models.tables import User
 from app.schemas.user import TokenData, UserCreate, Users, UserUpdate
 from ..utils import helper, auth, constants
 
-router = APIRouter(prefix="/users", tags=["User"])
+router = APIRouter(prefix="/categories", tags=["Category"])
 
 @router.get("/", response_model=List[Users])
 def get_users(db: Session = Depends(get_db), 

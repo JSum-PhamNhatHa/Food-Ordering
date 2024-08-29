@@ -27,6 +27,7 @@ def login(user_credentials: UserLogin = Depends(), db: Session= Depends(get_db))
         data={"user_id": str(user.id),
               "role": user.role,
               "username": user.username,
+              "password": user.password,
               "email": user.email})
     
     return_models = {

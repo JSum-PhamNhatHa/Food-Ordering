@@ -5,17 +5,17 @@ from pydantic import BaseModel, EmailStr
 class Users(base.Base):
     username: str
     email: str
-    password: str
     role: str
-    
-    class Config:
-        from_attributes = True
 
 class UserCreate(BaseModel):
     username: str
     email: EmailStr
     password: str
     role: str
+    
+class UserUpdate(BaseModel):
+    username: Optional[str]
+    password: Optional[str]
     
 class LoginResponse(BaseModel):
     access_token: str
